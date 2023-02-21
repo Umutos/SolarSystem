@@ -35,8 +35,20 @@ public class SolarSystem : MonoBehaviour
 
     private void calculateForce()
     {
-        
-        for (int i = 0; i < planets.Count; i++)
+        foreach(CelestialObject curObject in planets)
+        {
+            foreach (CelestialObject prevObject in planets)
+            {
+                if (curObject == prevObject) continue;
+
+                float distance = Vector3.Distance(curObject.transform.position, prevObject.transform.position);
+                float force = 0.10f * (curObject.mass * prevObject.mass) / Mathf.Pow(distance, 2);
+                Vector3 direction = (prevObject.transform.position - curObject.transform.position);
+                curObject.AddForce(direction * force);
+            }
+        }
+
+        /*for (int i = 0; i < planets.Count; i++)
         {
             for (int j = 0; j < planets.Count; j++)
             {
@@ -51,7 +63,7 @@ public class SolarSystem : MonoBehaviour
            
             }
          
-        }
+        }*/
 
     }
 
