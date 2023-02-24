@@ -2,20 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Camera : MonoBehaviour
+public class SceneCamera : MonoBehaviour
 {
-    public float speedH = 2.0f;
-    public float speedV = 2.0f;
+    public float speed = 20.0f;
 
+    private float speedH = 2.0f;
+    private float speedV = 2.0f;
     private float yaw = 0.0f;
-    private float pitch = 0.0f;
-
-    float speed = 10.0f;
+    private float pitch = 0.0f; 
 
     // Update is called once per frame
     void Update()
     {
-
         if (Input.GetMouseButton(1))
         {
             Cursor.lockState = CursorLockMode.Locked;
@@ -26,7 +24,10 @@ public class Camera : MonoBehaviour
 
             transform.position += transform.right * Input.GetAxisRaw("Horizontal") * Time.deltaTime * speed + transform.forward *Input.GetAxisRaw("Vertical") * Time.deltaTime * speed;
 
-
+            if (Input.GetKeyDown(KeyCode.LeftShift))
+                speed = 50.0f;
+            else if (Input.GetKeyUp(KeyCode.LeftShift))
+                speed = 20.0f;
 
         }
         if (Input.GetMouseButtonUp(1))
