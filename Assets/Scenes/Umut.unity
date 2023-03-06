@@ -423,7 +423,6 @@ GameObject:
   - component: {fileID: 1786773012}
   - component: {fileID: 1786773011}
   - component: {fileID: 1786773014}
-  - component: {fileID: 1786773015}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -504,25 +503,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1786773010}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5cdf900c461e5b44cbc68bc3e0b3039e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 20
---- !u!114 &1786773015
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1786773010}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7ce7b0443e32340428bcf01775e32e6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 1450262005}
-  distance: 25
-  sensitivity: 1
-  zoomSpeed: 50
+  sensitivity: 2
+  zoomSpeed: 10
+  speed: 20
+  distance: 50
