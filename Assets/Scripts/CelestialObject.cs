@@ -5,9 +5,11 @@ using UnityEngine;
 public class CelestialObject : MonoBehaviour
 {
 
-
-     public float mass;
+    public float mass;
     public Vector3 velocity;
+    public 
+
+
     void Start()
     {
        
