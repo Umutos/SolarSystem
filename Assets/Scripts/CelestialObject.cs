@@ -7,8 +7,8 @@ public class CelestialObject : MonoBehaviour
 
     public float mass;
     public Vector3 velocity;
-    public 
-
+    public string planetName;
+         
 
     void Start()
     {
@@ -18,7 +18,8 @@ public class CelestialObject : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(velocity * Time.deltaTime+(velocity* Time.deltaTime * Time.deltaTime)/2.0f);
+        if (!MainMenu.OnPause)
+            transform.Translate(velocity * Time.deltaTime+(velocity* Time.deltaTime * Time.deltaTime)/2.0f);
     }
 
    public void AddForce(Vector3 forceToAdd)

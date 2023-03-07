@@ -18,9 +18,9 @@ public class CameraOrbite : MonoBehaviour
 
     public float distance = -50f;
 
-    private Transform target;
+    [HideInInspector] public Transform target;
     private Transform previousTarget;
-    private bool isOrbiting = false;
+    [HideInInspector] public bool isOrbiting = false;
 
     void Start()
     {

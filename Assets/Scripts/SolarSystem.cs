@@ -18,7 +18,8 @@ public class SolarSystem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        calculateForce();
+        if (!MainMenu.OnPause)
+            calculateForce();
     }
 
     private void GetPlanets()
@@ -28,8 +29,6 @@ public class SolarSystem : MonoBehaviour
         {
             planets.Add(planetsTemp[i].GetComponent<CelestialObject>());
         }
-
-
     }
 
 
