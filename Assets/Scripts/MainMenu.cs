@@ -26,12 +26,12 @@ public class MainMenu : MonoBehaviour
     [SerializeField] private TMP_InputField spawnMass;
 
     [SerializeField] private CameraOrbite cam;
+    [SerializeField] private SolarSystem solarSystem;
 
     [SerializeField] private GameObject spawnable;
     private CelestialObject target = null;
 
     static public bool OnPause = true;
-
 
     // Start is called before the first frame update
     void Start()
@@ -82,12 +82,20 @@ public class MainMenu : MonoBehaviour
     public void CreateCelestialObject()
     {
         CelestialObject parameter = spawnable.GetComponent<CelestialObject>();
+
         parameter.planetName = spawnName.text;
-        /*parameter.velocity.x = spawnVelocityX.text;
-        parameter.velocity.y = spawnVelocityY.text;
-        parameter.velocity.z = spawnVelocityZ.text);*/
+        parameter.mass = float.Parse(spawnMass.text);
+
+        Vector3 pos = new Vector3(float.Parse(spawnPositionX.text), float.Parse(spawnPositionY.text), float.Parse(spawnPositionZ.text));
+        parameter.gameObject.transform.SetPositionAndRotation(pos, Quaternion.identity);
+
+        parameter.velocity.x = float.Parse(spawnVelocityX.text);
+        parameter.velocity.y = float.Parse(spawnVelocityY.text);
+        parameter.velocity.z = float.Parse(spawnVelocityZ.text);
+
+        solarSystem.planets.Add(parameter);
         Instantiate(spawnable);
-    }
+    } 
 
     public void CancelCreation()
     {

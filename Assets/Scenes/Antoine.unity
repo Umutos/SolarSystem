@@ -3662,7 +3662,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2566664181568529212, guid: 49c2a438542d13d4aa9cab0bc89606db, type: 3}
       propertyPath: velocity.x
-      value: 5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2566664181568529212, guid: 49c2a438542d13d4aa9cab0bc89606db, type: 3}
       propertyPath: velocity.z
@@ -6402,7 +6402,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2566664181568529212, guid: 49c2a438542d13d4aa9cab0bc89606db, type: 3}
       propertyPath: velocity.x
-      value: 5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2566664181568529212, guid: 49c2a438542d13d4aa9cab0bc89606db, type: 3}
       propertyPath: velocity.z
@@ -7748,6 +7748,7 @@ MonoBehaviour:
   spawnVelocityZ: {fileID: 1637363150}
   spawnMass: {fileID: 967858005}
   cam: {fileID: 704435241}
+  solarSystem: {fileID: 1278187775}
   spawnable: {fileID: 3388420313211481440, guid: 49c2a438542d13d4aa9cab0bc89606db, type: 3}
 --- !u!1 &1785346833
 GameObject:
