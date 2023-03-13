@@ -6,17 +6,30 @@ public class VectorPoint : MonoBehaviour
 {
     
      public Vector3 vectorCoordinnate ;
-    private LineRenderer vectorDir;
     public List<CelestialObject> planets;
     public float test;
     public float force;
+    public float dist = 9999;
+    public int range ;
+    public int step;
+    public LineRenderer arrowTip;
+    private LineRenderer vectorDir;
     private bool tooFar;
     void Start()
     {
+       
+        arrowTip = transform.GetChild(0).GetComponent<LineRenderer>();
         vectorDir = GetComponent<LineRenderer>();
+      
         StartCoroutine(LoadPlanet());
-       
-       
+        GameObject[] vectorField;
+        vectorField = GameObject.FindGameObjectsWithTag("VectorField");
+        if (vectorField.Length != 0)
+        {
+            range = vectorField[0].GetComponent<VectorField>().range;
+            step = vectorField[0].GetComponent<VectorField>().step;
+        }
+
     }
 
     // Update is called once per frame
@@ -26,14 +39,19 @@ public class VectorPoint : MonoBehaviour
       
             calculatevectorDir();
             vectorDir.SetPosition(1, transform.localPosition);
-            test = Vector3.Distance(transform.position, transform.localPosition + vectorCoordinnate);
-            if (test < 4)
+        
+        test = Vector3.Distance(transform.position, transform.localPosition + vectorCoordinnate);
+            if (test < 1.5)
             {
-                vectorDir.SetPosition(0, transform.localPosition + vectorCoordinnate);
+                arrowTip.SetPosition(0, transform.localPosition + vectorCoordinnate);
+                vectorDir.SetPosition(0, transform.localPosition+ vectorCoordinnate);
+                arrowTip.SetPosition(1, transform.localPosition + vectorCoordinnate + vectorCoordinnate / 10);
             }
             else
             {
-                vectorDir.SetPosition(0, transform.localPosition);
+                arrowTip.SetPosition(0, transform.position);
+                arrowTip.SetPosition(1, transform.position);
+                vectorDir.SetPosition(0, transform.position);
             }
         
       
@@ -42,16 +60,33 @@ public class VectorPoint : MonoBehaviour
 
     private void calculatevectorDir()
     {
+        dist = 9999;
          foreach (CelestialObject planet in planets)
             {
                 
 
                 float distance = Vector3.Distance(transform.position, planet.transform.position);
+                if(dist> distance)
+            {
+                dist = distance;
+            }
                 force = 0.050f * (planet.mass) / Mathf.Pow(distance, 2);
                 Vector3 direction = (planet.transform.position - transform.position);
                 
                     vectorCoordinnate +=direction* force ;
             }
+
+        if (dist != 9999 && dist > step * range && step!=0) 
+        {
+            
+            GameObject[] vectorField;
+            vectorField = GameObject.FindGameObjectsWithTag("VectorField");
+            if (vectorField.Length != 0)
+            { 
+                vectorField[0].GetComponent<VectorField>().RecreateVectorField();
+            }
+
+        }
        
 
     }

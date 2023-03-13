@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Planet
   - UI
+  - VectorField
   layers:
   - Default
   - TransparentFX

@@ -23,16 +23,19 @@ public class VectorField : MonoBehaviour
 
     private void CreateVectorField()
     {
-        for(int i = -range/2; i< range / 2; i++)
+        for(int i = -range/2; i < range / 2+1; i++)
         {
-            for (int j = -range / 2; j < range / 2; j ++)
+            for (int j = -range / 2; j < range / 2+1; j ++)
             {
-                for (int k = -range / 2; k < range / 2; k ++)
+                for (int k = -range / 2; k < range / 2+1; k ++)
                 {
                     spawnedObjects.Add(Instantiate(vectorPoint, new Vector3(transform.position.x+(i*step), transform.position.y+ (j * step), transform.position.z+ (k * step)), Quaternion.identity));
+                    
                 }
             }
         }
+        
+
     }
 
     private void DeleteVectorField()
@@ -41,6 +44,12 @@ public class VectorField : MonoBehaviour
         {
             Destroy(obj);
         }
+    }
+
+    public void RecreateVectorField()
+    {
+        DeleteVectorField();
+        CreateVectorField();
     }
 
     public void VectorFieldManagement(bool active)
@@ -63,8 +72,7 @@ public class VectorField : MonoBehaviour
 
         if (activated)
         {
-            DeleteVectorField();
-            CreateVectorField();
+            RecreateVectorField();
         }
     }
 }
