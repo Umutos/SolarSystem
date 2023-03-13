@@ -3881,7 +3881,7 @@ GameObject:
   - component: {fileID: 835499633}
   - component: {fileID: 835499632}
   - component: {fileID: 835499631}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7676,10 +7676,10 @@ RectTransform:
   m_Father: {fileID: 835499634}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 0.5}
-  m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -225, y: 0}
-  m_SizeDelta: {x: 450, y: 730}
+  m_AnchorMin: {x: 0.69431794, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 1.4999695}
+  m_SizeDelta: {x: 0, y: -3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1782636480
 MonoBehaviour:
@@ -7739,17 +7739,8 @@ MonoBehaviour:
   planetVelocity: {fileID: 735071301}
   planetPosition: {fileID: 598955042}
   creationPanel: {fileID: 1398606234}
-  spawnName: {fileID: 520461434}
-  spawnPositionX: {fileID: 1163215229}
-  spawnPositionY: {fileID: 58042748}
-  spawnPositionZ: {fileID: 807553600}
-  spawnVelocityX: {fileID: 479600567}
-  spawnVelocityY: {fileID: 2005969048}
-  spawnVelocityZ: {fileID: 1637363150}
-  spawnMass: {fileID: 967858005}
+  generalInfoPanel: {fileID: 0}
   cam: {fileID: 704435241}
-  solarSystem: {fileID: 1278187775}
-  spawnable: {fileID: 3388420313211481440, guid: 49c2a438542d13d4aa9cab0bc89606db, type: 3}
 --- !u!1 &1785346833
 GameObject:
   m_ObjectHideFlags: 0
