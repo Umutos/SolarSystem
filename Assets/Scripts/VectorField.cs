@@ -7,10 +7,12 @@ public class VectorField : MonoBehaviour
     public int range = 32;
     public int step = 1;
     public GameObject vectorPoint;
+
+    private List<GameObject> spawnedObjects = new List<GameObject>();
+    private bool activated = false;
     void Start()
     {
 
-        SpawnVectorPoint();
     }
 
    
@@ -19,7 +21,7 @@ public class VectorField : MonoBehaviour
         
     }
 
-    private void SpawnVectorPoint()
+    private void CreateVectorField()
     {
         for(int i = -range/2; i< range / 2; i++)
         {
@@ -27,12 +29,42 @@ public class VectorField : MonoBehaviour
             {
                 for (int k = -range / 2; k < range / 2; k ++)
                 {
-                    Instantiate(vectorPoint, new Vector3(transform.position.x+(i*step), transform.position.y+ (j * step), transform.position.z+ (k * step)), Quaternion.identity);
+                    spawnedObjects.Add(Instantiate(vectorPoint, new Vector3(transform.position.x+(i*step), transform.position.y+ (j * step), transform.position.z+ (k * step)), Quaternion.identity));
                 }
             }
         }
-       
     }
 
+    private void DeleteVectorField()
+    {
+        foreach (GameObject obj in spawnedObjects)
+        {
+            Destroy(obj);
+        }
+    }
 
+    public void VectorFieldManagement(bool active)
+    {
+        activated = active;
+
+        if (active)
+        {
+            CreateVectorField();
+        }
+        else
+        {
+            DeleteVectorField();
+        }
+    }
+
+    public void ChangeRange(float value)
+    {
+        range = (int)value;
+
+        if (activated)
+        {
+            DeleteVectorField();
+            CreateVectorField();
+        }
+    }
 }

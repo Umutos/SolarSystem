@@ -16,19 +16,9 @@ public class MainMenu : MonoBehaviour
     [SerializeField] private TMP_Text planetPosition;
 
     [SerializeField] private RectTransform creationPanel;
-    [SerializeField] private TMP_InputField spawnName;
-    [SerializeField] private TMP_InputField spawnPositionX;
-    [SerializeField] private TMP_InputField spawnPositionY;
-    [SerializeField] private TMP_InputField spawnPositionZ;
-    [SerializeField] private TMP_InputField spawnVelocityX;
-    [SerializeField] private TMP_InputField spawnVelocityY;
-    [SerializeField] private TMP_InputField spawnVelocityZ;
-    [SerializeField] private TMP_InputField spawnMass;
+    [SerializeField] private RectTransform generalInfoPanel;
 
     [SerializeField] private CameraOrbite cam;
-    [SerializeField] private SolarSystem solarSystem;
-
-    [SerializeField] private GameObject spawnable;
     private CelestialObject target = null;
 
     static public bool OnPause = true;
@@ -67,39 +57,28 @@ public class MainMenu : MonoBehaviour
             planetVelocity.text = "Velocity : " + target.velocity.ToString();
             planetPosition.text = "Position : " + target.transform.position.ToString();
         }
+
+        if (!creationPanel.gameObject.activeInHierarchy)
+        {
+            generalInfoPanel.gameObject.SetActive(true);
+        }
     }
 
     public void AddCelestialObject()
     {
-        if (infoPanel.gameObject.activeInHierarchy)
+        if (infoPanel.gameObject.activeInHierarchy || generalInfoPanel.gameObject.activeInHierarchy)
         {
             infoPanel.gameObject.SetActive(false);
+            generalInfoPanel.gameObject.SetActive(false);
         }
 
         creationPanel.gameObject.SetActive(true);
     }
 
-    public void CreateCelestialObject()
-    {
-        CelestialObject parameter = spawnable.GetComponent<CelestialObject>();
-
-        parameter.planetName = spawnName.text;
-        parameter.mass = float.Parse(spawnMass.text);
-
-        Vector3 pos = new Vector3(float.Parse(spawnPositionX.text), float.Parse(spawnPositionY.text), float.Parse(spawnPositionZ.text));
-        parameter.gameObject.transform.SetPositionAndRotation(pos, Quaternion.identity);
-
-        parameter.velocity.x = float.Parse(spawnVelocityX.text);
-        parameter.velocity.y = float.Parse(spawnVelocityY.text);
-        parameter.velocity.z = float.Parse(spawnVelocityZ.text);
-
-        solarSystem.planets.Add(parameter);
-        Instantiate(spawnable);
-    } 
-
     public void CancelCreation()
     {
         creationPanel.gameObject.SetActive(false);
+        generalInfoPanel.gameObject.SetActive(true);
     }
 
     public void StartSimulation()
