@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class CameraOrbite : MonoBehaviour
 {
@@ -17,6 +19,8 @@ public class CameraOrbite : MonoBehaviour
     private float latitude = 0f;
 
     public float distance = -50f;
+    private GraphicRaycaster m_Raycaster;
+    bool firstClick;
 
     [HideInInspector] public Transform target;
     private Transform previousTarget;
@@ -25,15 +29,19 @@ public class CameraOrbite : MonoBehaviour
     void Start()
     {
         Cursor.lockState = CursorLockMode.None;
+        m_Raycaster = GetComponent<GraphicRaycaster>();
     }
 
     void Update()
     {
         if (Input.GetMouseButtonDown(0))
         {
+            if (EventSystem.current.IsPointerOverGameObject())
+                return;
+
             RaycastHit hit;
             if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit))
-            {
+            { 
                 target = hit.transform;
                 isOrbiting = true;
                 longitude = transform.eulerAngles.y;
@@ -45,21 +53,21 @@ public class CameraOrbite : MonoBehaviour
                 isOrbiting = false;
             }
         }
-        else if (Input.GetMouseButtonUp(1) && target != null)
-        {
-            target = null;
-            isOrbiting = false;
-        }
 
+        transform.position += transform.right * Input.GetAxisRaw("Horizontal") * Time.deltaTime * speed + transform.forward * Input.GetAxisRaw("Vertical") * Time.deltaTime * speed;
+        
         if (Input.GetMouseButton(1))
         {
+            if (firstClick)
+            {
+                firstClick = false;
+            }
+
             Cursor.lockState = CursorLockMode.Locked;
             yaw += speedH * Input.GetAxis("Mouse X");
             pitch -= speedV * Input.GetAxis("Mouse Y");
 
             transform.eulerAngles = new Vector3(pitch, yaw, 0.0f);
-
-            transform.position += transform.right * Input.GetAxisRaw("Horizontal") * Time.deltaTime * speed + transform.forward * Input.GetAxisRaw("Vertical") * Time.deltaTime * speed;
 
             if (Input.GetKeyDown(KeyCode.LeftShift))
                 speed = 50.0f;
@@ -70,6 +78,7 @@ public class CameraOrbite : MonoBehaviour
         if (Input.GetMouseButtonUp(1))
         {
             Cursor.lockState = CursorLockMode.None;
+            firstClick = true;
         }
     }
 
