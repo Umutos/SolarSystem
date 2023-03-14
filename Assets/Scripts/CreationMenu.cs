@@ -40,7 +40,7 @@ public class CreationMenu : MonoBehaviour
         parameter.mass = float.Parse(spawnMass.text);
 
         Vector3 pos = new Vector3(float.Parse(spawnPositionX.text), float.Parse(spawnPositionY.text), float.Parse(spawnPositionZ.text));
-        parameter.gameObject.transform.SetPositionAndRotation(pos, Quaternion.identity);
+        parameter.pos = pos;
 
         parameter.velocity.x = float.Parse(spawnVelocityX.text);
         parameter.velocity.y = float.Parse(spawnVelocityY.text);

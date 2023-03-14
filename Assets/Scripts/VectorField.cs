@@ -10,11 +10,11 @@ public class VectorField : MonoBehaviour
 
     private List<GameObject> spawnedObjects = new List<GameObject>();
     private bool activated = false;
+
     void Start()
     {
 
     }
-
    
     void Update()
     {
@@ -29,13 +29,10 @@ public class VectorField : MonoBehaviour
             {
                 for (int k = -range / 2; k < range / 2+1; k ++)
                 {
-                    spawnedObjects.Add(Instantiate(vectorPoint, new Vector3(transform.position.x+(i*step), transform.position.y+ (j * step), transform.position.z+ (k * step)), Quaternion.identity));
-                    
+                    spawnedObjects.Add(Instantiate(vectorPoint, new Vector3(transform.position.x + (i*step), transform.position.y + (j * step), transform.position.z + (k * step)), Quaternion.identity));
                 }
             }
         }
-        
-
     }
 
     private void DeleteVectorField()
