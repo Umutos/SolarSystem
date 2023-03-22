@@ -1201,6 +1201,7 @@ MonoBehaviour:
   range: 10
   step: 4
   vectorPoint: {fileID: 2993216140528143975, guid: 1523ed85e6fac2341a5360335280bb00, type: 3}
+  solarSystem: {fileID: 0}
 --- !u!1 &227331797
 GameObject:
   m_ObjectHideFlags: 0
@@ -6389,7 +6390,7 @@ GameObject:
   - component: {fileID: 1278187775}
   m_Layer: 0
   m_Name: SolarSystem
-  m_TagString: Untagged
+  m_TagString: SolarSystem
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -48,8 +48,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   vectorCoordinnate: {x: 0, y: 0, z: 0}
   planets: []
-  test: 0
+  arrowLength: 0
   force: 0
+  dist: 9999
+  range: 0
+  step: 0
   arrowTip: {fileID: 0}
 --- !u!120 &2799282286996992785
 LineRenderer:
@@ -71,7 +74,7 @@ LineRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: a0c28493c43acd543a490e392b1d5aca, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -268,7 +271,7 @@ LineRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: a0c28493c43acd543a490e392b1d5aca, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

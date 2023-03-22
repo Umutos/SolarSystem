@@ -56,5 +56,6 @@ public class CreationMenu : MonoBehaviour
         GameObject planet = Instantiate(spawnable);
         solarSystem.planets.Add(planet.GetComponent<CelestialObject>());
         planet.transform.parent = solarSystem.transform;
+        planet.transform.localScale *= (parameter.mass * 2) / 5;
     }
 }
