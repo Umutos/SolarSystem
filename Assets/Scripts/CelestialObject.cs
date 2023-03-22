@@ -7,6 +7,7 @@ public class CelestialObject : MonoBehaviour
 
     public float mass;
     public string planetName;
+    public bool vectorFieldOn = false;
 
     public Vector3 velocity;
     public Vector3 pos;

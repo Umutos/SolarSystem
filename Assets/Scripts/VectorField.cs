@@ -81,4 +81,15 @@ public class VectorField : MonoBehaviour
         }
     }
 
+
+    public void ChangeStep(float value)
+    {
+        step = (int)value;
+
+        if (activated)
+        {
+            RecreateVectorField();
+        }
+    }
+
 }
