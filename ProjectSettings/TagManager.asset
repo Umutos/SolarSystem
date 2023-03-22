@@ -7,6 +7,7 @@ TagManager:
   - Planet
   - UI
   - VectorField
+  - SolarSystem
   layers:
   - Default
   - TransparentFX

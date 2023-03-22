@@ -7,14 +7,13 @@ public class VectorPoint : MonoBehaviour
     
     public Vector3 vectorCoordinnate ;
     public List<CelestialObject> planets;
-    public float test;
+    public float arrowLength;
     public float force;
     public float dist = 9999;
     public int range ;
     public int step;
     public LineRenderer arrowTip;
     private LineRenderer vectorDir;
-    private bool tooFar;
     void Start()
     {
        
@@ -32,16 +31,13 @@ public class VectorPoint : MonoBehaviour
 
     }
 
-    // Update is called once per frame
-    void Update()
+    void MoveVectorArrow()
     {
         vectorCoordinnate = new Vector3(0, 0, 0);
-      
-        calculatevectorDir();
         vectorDir.SetPosition(1, transform.localPosition);
-        
-        test = Vector3.Distance(transform.position, transform.localPosition + vectorCoordinnate);
-        if (test <10)
+        arrowLength = Vector3.Distance(transform.position, transform.localPosition + vectorCoordinnate);
+        //if arroww too long dont draw it
+        if (arrowLength < 10)
         {
             arrowTip.SetPosition(0, transform.localPosition + vectorCoordinnate);
             vectorDir.SetPosition(0, transform.localPosition + vectorCoordinnate);
@@ -53,6 +49,13 @@ public class VectorPoint : MonoBehaviour
             arrowTip.SetPosition(1, transform.position);
             vectorDir.SetPosition(0, transform.position);
         }
+    }
+
+    // Update is called once per frame
+    void FixedUpdate()
+    {
+        calculatevectorDir();
+        MoveVectorArrow();
     }
 
     private void calculatevectorDir()

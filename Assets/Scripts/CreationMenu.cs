@@ -23,7 +23,12 @@ public class CreationMenu : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        GameObject[] vectorField;
+        vectorField = GameObject.FindGameObjectsWithTag("SolarSystem");
+        if (vectorField.Length != 0)
+        {
+            solarSystem = vectorField[0].GetComponent<SolarSystem>();
+        }
     }
 
     // Update is called once per frame
@@ -34,8 +39,9 @@ public class CreationMenu : MonoBehaviour
 
     public void CreateCelestialObject()
     {
+        
         CelestialObject parameter = spawnable.GetComponent<CelestialObject>();
-
+        spawnable.name = spawnName.text; 
         parameter.planetName = spawnName.text;
         parameter.mass = float.Parse(spawnMass.text);
 
@@ -46,7 +52,9 @@ public class CreationMenu : MonoBehaviour
         parameter.velocity.y = float.Parse(spawnVelocityY.text);
         parameter.velocity.z = float.Parse(spawnVelocityZ.text);
 
-        solarSystem.planets.Add(parameter);
-        Instantiate(spawnable);
+        
+        GameObject planet = Instantiate(spawnable);
+        solarSystem.planets.Add(planet.GetComponent<CelestialObject>());
+        planet.transform.parent = solarSystem.transform;
     }
 }

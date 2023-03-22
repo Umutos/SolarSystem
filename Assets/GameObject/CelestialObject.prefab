@@ -45,9 +45,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ace61ea60b1bafb45a231aa7f91c0a0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mass: 2
-  velocity: {x: -2.433934, y: -2.3128684, z: 6.9036317}
-  planetName: wer
+  mass: 10
+  planetName: 10
+  velocity: {x: 0, y: 0, z: 2}
+  pos: {x: 10, y: 0, z: 0}
 --- !u!1 &8421529647974990879
 GameObject:
   m_ObjectHideFlags: 0

@@ -19,7 +19,7 @@ public class CelestialObject : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if (!MainMenu.OnPause)
         {
@@ -36,6 +36,6 @@ public class CelestialObject : MonoBehaviour
 
    public void AddForce(Vector3 forceToAdd)
    {
-        new_acc += forceToAdd * Time.deltaTime / mass;
+        new_acc += forceToAdd * Time.fixedDeltaTime / mass;
    }
 }

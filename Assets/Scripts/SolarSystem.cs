@@ -14,7 +14,7 @@ public class SolarSystem : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if (!MainMenu.OnPause)
             calculateForce();
@@ -36,7 +36,7 @@ public class SolarSystem : MonoBehaviour
         {
             foreach (CelestialObject prevObject in planets)
             {
-                if (curObject == prevObject) continue;
+                if (curObject.GetInstanceID() == prevObject.GetInstanceID()) continue;
 
                 float distance = Vector3.Distance(curObject.transform.position, prevObject.transform.position);
                 float force = 0.10f * (curObject.mass * prevObject.mass) / Mathf.Pow(distance, 2);
