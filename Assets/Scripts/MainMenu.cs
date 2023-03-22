@@ -18,7 +18,7 @@ public class MainMenu : MonoBehaviour
     [SerializeField] private RectTransform creationPanel;
     [SerializeField] private RectTransform generalInfoPanel;
 
-    [SerializeField] private CameraOrbite cam;
+    [SerializeField] private CameraControl cam;
     private CelestialObject target = null;
 
     static public bool OnPause = true;
