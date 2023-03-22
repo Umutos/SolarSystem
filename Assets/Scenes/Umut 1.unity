@@ -1096,6 +1096,7 @@ MonoBehaviour:
   range: 10
   step: 4
   vectorPoint: {fileID: 2993216140528143975, guid: 1523ed85e6fac2341a5360335280bb00, type: 3}
+  solarSystem: {fileID: 0}
 --- !u!1 &227331797
 GameObject:
   m_ObjectHideFlags: 0
@@ -11350,8 +11351,16 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2566664181568529212, guid: 49c2a438542d13d4aa9cab0bc89606db, type: 3}
+      propertyPath: pos.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2566664181568529212, guid: 49c2a438542d13d4aa9cab0bc89606db, type: 3}
       propertyPath: planetName
       value: Sun
+      objectReference: {fileID: 0}
+    - target: {fileID: 2566664181568529212, guid: 49c2a438542d13d4aa9cab0bc89606db, type: 3}
+      propertyPath: velocity.x
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2566664181568529212, guid: 49c2a438542d13d4aa9cab0bc89606db, type: 3}
       propertyPath: velocity.z
