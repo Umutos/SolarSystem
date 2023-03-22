@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class CameraOrbite : MonoBehaviour
+public class CameraControl : MonoBehaviour
 {
     public float sensitivity = 2f;
     public float zoomSpeed = 2f;
@@ -102,6 +102,9 @@ public class CameraOrbite : MonoBehaviour
 
             transform.rotation = rotation;
             transform.position = position;
+
+            yaw   = transform.eulerAngles.y;
+            pitch = transform.eulerAngles.x;
         }
     }
 }
