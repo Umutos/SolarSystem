@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class FieldLine : MonoBehaviour
 {
-    public int pointNumber = 10;
+    public int pointNumber = 20;
     public bool isActivated = false;
 
     public LineRenderer lineRenderer;

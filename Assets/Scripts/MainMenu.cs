@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 using System;
 
@@ -14,6 +15,7 @@ public class MainMenu : MonoBehaviour
     [SerializeField] private TMP_Text planetMass;
     [SerializeField] private TMP_Text planetVelocity;
     [SerializeField] private TMP_Text planetPosition;
+    [SerializeField] private Toggle planetFieldLine;
 
     [SerializeField] private RectTransform creationPanel;
     [SerializeField] private RectTransform generalInfoPanel;
@@ -49,6 +51,7 @@ public class MainMenu : MonoBehaviour
             planetMass.text = "Mass : " + target.mass.ToString();
             planetVelocity.text = "Velocity : " + target.velocity.ToString();
             planetPosition.text = "Position : " + target.transform.position.ToString();
+            planetFieldLine.isOn = target.fieldLineOn;
         }
         else if (!cam.isOrbiting && infoPanel.gameObject.activeInHierarchy)
         {
@@ -97,14 +100,6 @@ public class MainMenu : MonoBehaviour
 
     public void FieldLineManagement(bool isOn)
     {
-        if (isOn)
-        {
-            target.fieldLineOn = true;
-        }
-        else
-        {
-            target.fieldLineOn = false;
-
-        }
+        target.fieldLineOn = isOn;
     }
 }

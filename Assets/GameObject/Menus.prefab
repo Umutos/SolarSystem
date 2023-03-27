@@ -5902,6 +5902,8 @@ MonoBehaviour:
   spawnVelocityY: {fileID: 1083798908502169364}
   spawnVelocityZ: {fileID: 1083798908199686722}
   spawnMass: {fileID: 1083798907527014617}
+  textureDropdown: {fileID: 0}
+  textures: []
   spawnable: {fileID: 3388420313211481440, guid: 49c2a438542d13d4aa9cab0bc89606db, type: 3}
   solarSystem: {fileID: 0}
 --- !u!1 &1083798907977004659
@@ -7553,6 +7555,7 @@ MonoBehaviour:
   planetMass: {fileID: 1083798907226584766}
   planetVelocity: {fileID: 1083798907231318985}
   planetPosition: {fileID: 1083798907090742190}
+  planetFieldLine: {fileID: 1083798907099827636}
   creationPanel: {fileID: 1083798907910616598}
   generalInfoPanel: {fileID: 1083798907432166326}
   cam: {fileID: 0}
