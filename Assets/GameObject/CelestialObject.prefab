@@ -47,12 +47,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ace61ea60b1bafb45a231aa7f91c0a0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mass: 10
-  planetName: 45we6bhj
+  mass: 1
+  planetName: 75
   vectorFieldOn: 0
   fieldLineOn: 0
-  velocity: {x: 0, y: 0, z: 0}
-  pos: {x: 0, y: 20, z: 0}
+  velocity: {x: 0, y: 1, z: 0}
+  pos: {x: 20, y: 20, z: 0}
   fieldLine: {fileID: 8325690099502978998}
 --- !u!114 &8325690099502978998
 MonoBehaviour:
