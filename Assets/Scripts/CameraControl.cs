@@ -14,16 +14,15 @@ public class CameraControl : MonoBehaviour
     private float speedV = 2.0f;
     private float yaw = 0.0f;
     private float pitch = 0.0f;
-    private float dist = 10f;
     private float longitude = 0f;
     private float latitude = 0f;
+    private float firstDistance = 0f;
+    public  float distance = -50f;
 
-    public float distance = -50f;
     private GraphicRaycaster m_Raycaster;
     bool firstClick;
 
     [HideInInspector] public Transform target;
-    private Transform previousTarget;
     [HideInInspector] public bool isOrbiting = false;
 
     void Start()
@@ -34,6 +33,17 @@ public class CameraControl : MonoBehaviour
 
     void Update()
     {
+        StartCam();
+        GodCam(); 
+    }
+
+    void LateUpdate()
+    {
+        CameraOrbite();
+    }
+
+    private void StartCam()
+    {
         if (Input.GetMouseButtonDown(0))
         {
             if (EventSystem.current.IsPointerOverGameObject())
@@ -41,30 +51,27 @@ public class CameraControl : MonoBehaviour
 
             RaycastHit hit;
             if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit))
-            { 
-                target = hit.transform;
-                isOrbiting = true;
-                longitude = transform.eulerAngles.y;
-                latitude = transform.eulerAngles.x;
-                dist = distance;
+            {
+                target        = hit.transform;
+                isOrbiting    = true;
+                longitude     = transform.eulerAngles.y;
+                latitude      = transform.eulerAngles.x;
+                firstDistance = distance;
             }
             else
-            {
-                isOrbiting = false;
-            }
+                isOrbiting    = false;
         }
 
-        transform.position += transform.right * Input.GetAxisRaw("Horizontal") * Time.deltaTime * speed + transform.forward * Input.GetAxisRaw("Vertical") * Time.deltaTime * speed;
-        
+        Vector3 movement = transform.right * Input.GetAxisRaw("Horizontal") + transform.forward * Input.GetAxisRaw("Vertical");
+        transform.position += movement * Time.deltaTime * speed;
+    }
+
+    private void GodCam()
+    {
         if (Input.GetMouseButton(1))
         {
-            if (firstClick)
-            {
-                firstClick = false;
-            }
-
             Cursor.lockState = CursorLockMode.Locked;
-            yaw += speedH * Input.GetAxis("Mouse X");
+            yaw   += speedH * Input.GetAxis("Mouse X");
             pitch -= speedV * Input.GetAxis("Mouse Y");
 
             transform.eulerAngles = new Vector3(pitch, yaw, 0.0f);
@@ -76,32 +83,29 @@ public class CameraControl : MonoBehaviour
         }
 
         if (Input.GetMouseButtonUp(1))
-        {
             Cursor.lockState = CursorLockMode.None;
-            firstClick = true;
-        }
     }
 
-    void LateUpdate()
+    private void CameraOrbite()
     {
         if (isOrbiting)
         {
             if (target == null)
                 return;
 
-            float scroll = Input.GetAxis("Mouse ScrollWheel");
-            dist -= scroll * zoomSpeed;
+            float scroll   = Input.GetAxis("Mouse ScrollWheel");
+            firstDistance -= scroll * zoomSpeed;
 
-            latitude += Input.GetAxis("Vertical") * sensitivity / 4;
+            latitude  += Input.GetAxis("Vertical") * sensitivity / 4;
             longitude -= Input.GetAxis("Horizontal") * sensitivity / 4;
 
-            latitude = Mathf.Clamp(latitude, -90f, 90f);
+            latitude   = Mathf.Clamp(latitude, -90f, 90f);
 
             Quaternion rotation = Quaternion.Euler(latitude, longitude, 0f);
-            Vector3 position = rotation * new Vector3(0f, 0f, -dist) + target.position;
+            Vector3 position    = rotation * new Vector3(0f, 0f, -firstDistance) + target.position;
 
-            transform.rotation = rotation;
-            transform.position = position;
+            transform.rotation  = rotation;
+            transform.position  = position;
 
             yaw   = transform.eulerAngles.y;
             pitch = transform.eulerAngles.x;

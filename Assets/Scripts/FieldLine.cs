@@ -4,44 +4,53 @@ using UnityEngine;
 
 public class FieldLine : MonoBehaviour
 {
-    public CelestialObject currentObject;
-    public SolarSystem solarSystem;
-    public int pointNumber = 10;
+    public int pointNumber = 20;
+    public bool isActivated = false;
 
-    Vector3 acc;
-    Vector3 vel;
-    Vector3 pos;
-    List<Vector3> points;
+    public LineRenderer lineRenderer;
+
+    List<Vector3> points = new List<Vector3>();
+
+    private SolarSystem solarSystem;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        solarSystem = FindObjectOfType<SolarSystem>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
-    void CreateLine()
+    public void DrawFieldLine(float id, Vector3 currentPos, float mass)
     {
-        pos = currentObject.transform.position;
-        vel = currentObject.velocity;
-        acc = Vector3.zero;
+        points.Clear();
+
+        Vector3 acc = Vector3.zero;
+        Vector3 pos = currentPos;
+        points.Add(pos);
 
         for (int i = 0; i < pointNumber; i++)
         {
             foreach (CelestialObject curObject in solarSystem.planets)
             {
-                if (curObject.GetInstanceID() == currentObject.GetInstanceID()) continue;
+                if (curObject.GetInstanceID() == id) continue;
 
                 float distance = Vector3.Distance(curObject.transform.position, pos);
-                float force = 0.10f * (curObject.mass * currentObject.mass) / Mathf.Pow(distance, 2);
+                float force = 0.10f * (curObject.mass * mass) / Mathf.Pow(distance, 2);
                 Vector3 direction = (pos - curObject.transform.position);
                 acc += direction * force;
             }
+
+            pos -= acc.normalized;
+
+            points.Add(pos);
         }
+
+        lineRenderer.positionCount = pointNumber + 1;
+        lineRenderer.SetPositions(points.ToArray());
     }
 }
