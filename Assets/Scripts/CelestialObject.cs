@@ -8,11 +8,14 @@ public class CelestialObject : MonoBehaviour
     public float mass;
     public string planetName;
     public bool vectorFieldOn = true;
+    public bool fieldLineOn = false;
 
     public Vector3 velocity;
     public Vector3 pos;
     private Vector3 acc;
     private Vector3 new_acc;
+
+    [SerializeField] private FieldLine fieldLine;
 
     void Start()
     {
@@ -32,6 +35,16 @@ public class CelestialObject : MonoBehaviour
             new_acc = Vector3.zero;
 
             transform.SetPositionAndRotation(pos, Quaternion.identity);
+        }
+
+        if (fieldLineOn)
+        {
+            fieldLine.lineRenderer.enabled = true;
+            fieldLine.DrawFieldLine(GetInstanceID(), pos, mass);
+        }
+        else
+        {
+            fieldLine.lineRenderer.enabled = false;
         }
     }
 

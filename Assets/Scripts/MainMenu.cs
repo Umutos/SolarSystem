@@ -94,4 +94,17 @@ public class MainMenu : MonoBehaviour
     {
         target.vectorFieldOn = isOn;
     }
+
+    public void FieldLineManagement(bool isOn)
+    {
+        if (isOn)
+        {
+            target.fieldLineOn = true;
+        }
+        else
+        {
+            target.fieldLineOn = false;
+
+        }
+    }
 }
