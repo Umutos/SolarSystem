@@ -6,43 +6,50 @@ public class VectorPoint : MonoBehaviour
 {
     
     public Vector3 vectorCoordinnate ;
-    public float test;
+    public float dist;
     public float force;
-    public float dist = 9999;
+
     public LineRenderer arrowTip;
     private LineRenderer vectorDir;
     public VectorField vectorField;
+    private Renderer rendererComponent;
+    float VectorLength = 1;
     public float maxRadius = 0;
-    private bool tooFar;
     void Start()
     {
        
         arrowTip = transform.GetChild(0).GetComponent<LineRenderer>();
         vectorDir = GetComponent<LineRenderer>();
+        rendererComponent = GetComponent<Renderer>();
+
+        calculatevectorDir();
+        MoveVectorArrow();
 
     }
     void FixedUpdate()
     {
-        calculatevectorDir();
-        MoveVectorArrow();
+        
+        if (rendererComponent.isVisible)
+        {
+            dist = Vector3.Distance(vectorField.mainCamera.transform.position, transform.position);
+
+
+            if (dist<=50)
+            calculatevectorDir();
+            MoveVectorArrow();
+        }
     }
 
     void MoveVectorArrow()
     {
+        vectorCoordinnate.Normalize();
+        vectorCoordinnate *= VectorLength;
         vectorDir.SetPosition(1, transform.localPosition);
-        test = Vector3.Distance(transform.position, transform.localPosition + vectorCoordinnate);
-        if (test < 8)
-        {
-            arrowTip.SetPosition(0, transform.localPosition + vectorCoordinnate);
-            vectorDir.SetPosition(0, transform.localPosition + vectorCoordinnate);
-            arrowTip.SetPosition(1, transform.localPosition + vectorCoordinnate + vectorCoordinnate / 10);
-        }
-        else
-        {
-            arrowTip.SetPosition(0, transform.position);
-            arrowTip.SetPosition(1, transform.position);
-            vectorDir.SetPosition(0, transform.position);
-        }
+        arrowTip.SetPosition(0, transform.localPosition + vectorCoordinnate);
+        vectorDir.SetPosition(0, transform.localPosition + vectorCoordinnate);
+        arrowTip.SetPosition(1, transform.localPosition + vectorCoordinnate + vectorCoordinnate / 10);
+        
+       
     }
 
     // Update is called once per frame
@@ -51,30 +58,21 @@ public class VectorPoint : MonoBehaviour
     private void calculatevectorDir()
     {
         vectorCoordinnate = new Vector3(0, 0, 0);
-        dist = 9999;
+        
         foreach (CelestialObject planet in vectorField.solarSystem.planets)
         {
-            float distance = Vector3.Distance(transform.position, planet.transform.position);
-            if (dist > distance)
+            if (planet.vectorFieldOn)
             {
-                dist = distance;
-            }
-            force = 0.050f * (planet.mass) / Mathf.Pow(distance, 2);
-            Vector3 direction = (planet.transform.position - transform.position);
+                float distance = Vector3.Distance(transform.position, planet.transform.position);
+           
+                force = 0.050f * (planet.mass) / Mathf.Pow(distance, 2);
+              
+                Vector3 direction = (planet.transform.position - transform.position);
 
-            vectorCoordinnate += direction * force;
+                vectorCoordinnate += direction * force;
+            }
         }
 
-        if (dist != 9999 && dist > vectorField.step * vectorField.range && vectorField.step !=0) 
-        {
-            GameObject[] vectorField;
-            vectorField = GameObject.FindGameObjectsWithTag("VectorField");
-            if (vectorField.Length != 0)
-            { 
-                vectorField[0].GetComponent<VectorField>().RecreateVectorField();
-            }
-
-        }
     }
 
 

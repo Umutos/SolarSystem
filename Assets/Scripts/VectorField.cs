@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class VectorField : MonoBehaviour
 {
-    public int range = 32;
-    public int step = 1;
+    public int range = 5;
+    public int step = 20;
     public GameObject vectorPoint;
+    public SolarSystem solarSystem;
+    public Camera mainCamera;
 
     private List<GameObject> spawnedObjects = new List<GameObject>();
-    public SolarSystem solarSystem;
     private bool activated = false;
 
     void Start()
@@ -18,7 +19,8 @@ public class VectorField : MonoBehaviour
         vectorField = GameObject.FindGameObjectsWithTag("SolarSystem");
         if (vectorField.Length != 0)
             solarSystem = vectorField[0].GetComponent<SolarSystem>();
-        
+
+        mainCamera = Camera.main;
 
     }
    

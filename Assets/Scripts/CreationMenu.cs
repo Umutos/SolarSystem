@@ -15,9 +15,12 @@ public class CreationMenu : MonoBehaviour
     [SerializeField] private TMP_InputField spawnVelocityY;
     [SerializeField] private TMP_InputField spawnVelocityZ;
     [SerializeField] private TMP_InputField spawnMass;
+    [SerializeField] private TMP_Dropdown textureDropdown;
+    [SerializeField] private List<Texture> textures;
 
     [SerializeField] private GameObject spawnable;
     [SerializeField] private SolarSystem solarSystem;
+    private Texture currentSelectedTexture;
 
 
     // Start is called before the first frame update
@@ -54,7 +57,13 @@ public class CreationMenu : MonoBehaviour
 
         
         GameObject planet = Instantiate(spawnable);
+
+        currentSelectedTexture = textures[textureDropdown.value];
         solarSystem.planets.Add(planet.GetComponent<CelestialObject>());
+        Renderer renderer = planet.transform.GetChild(0).GetComponent<MeshRenderer>();
+        Material newMaterial = new Material(renderer.sharedMaterial);
+        newMaterial.mainTexture = currentSelectedTexture;
+        renderer.material = newMaterial;
         planet.transform.parent = solarSystem.transform;
         planet.transform.localScale *= (parameter.mass * 2) / 5;
     }

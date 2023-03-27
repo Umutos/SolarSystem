@@ -18,7 +18,7 @@ public class TextureDropdown : MonoBehaviour
 
     private void ChangeTexture(TMP_Dropdown dropdown)
     {
-        currentSelectedTexture = textures[dropdown.value];
+        
         SetTexture(prefab, currentSelectedTexture);
     }
 
