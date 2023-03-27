@@ -5868,8 +5868,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35d86f9b057cc884ebf9024360d1034f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  range: 5
-  step: 20
+  range: 20
+  step: 10
   vectorPoint: {fileID: 2993216140528143975, guid: 1523ed85e6fac2341a5360335280bb00, type: 3}
   solarSystem: {fileID: 0}
   mainCamera: {fileID: 0}
@@ -6366,7 +6366,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1083798906984417573, guid: 7efea28f661add24b9c4b59bb357d686, type: 3}
       propertyPath: m_MinValue
-      value: 20
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 1083798906984417573, guid: 7efea28f661add24b9c4b59bb357d686, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -6522,7 +6522,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1083798907988908528, guid: 7efea28f661add24b9c4b59bb357d686, type: 3}
       propertyPath: m_MaxValue
-      value: 18
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 1083798907988908528, guid: 7efea28f661add24b9c4b59bb357d686, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target

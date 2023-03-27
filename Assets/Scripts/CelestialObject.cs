@@ -39,4 +39,6 @@ public class CelestialObject : MonoBehaviour
    {
         new_acc += forceToAdd * Time.fixedDeltaTime / mass;
    }
+
+ 
 }
